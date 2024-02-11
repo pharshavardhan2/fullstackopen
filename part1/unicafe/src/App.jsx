@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
-const Metric = ({ text, value }) => <p>{text} {value}</p>
+const Metric = ({ text, value }) => <tr><td>{text}</td><td>{value}</td></tr>
 
 const Statistics = ({ good, neutral, bad }) => {
   const all = good + neutral + bad;
@@ -12,15 +12,19 @@ const Statistics = ({ good, neutral, bad }) => {
   if (all === 0) return(<div>No feedback given</div>)
 
   return (
-    <>
+    <div>
       <h1>statistics</h1>
-      <Metric text='good' value={good} />
-      <Metric text='neutral' value={neutral} />
-      <Metric text='bad' value={bad} />
-      <Metric text='all' value={all} />
-      <Metric text='average' value={average} />
-      <Metric text='positive' value={positive + ' %'} />
-    </> 
+      <table>
+        <tbody>
+          <Metric text='good' value={good} />
+          <Metric text='neutral' value={neutral} />
+          <Metric text='bad' value={bad} />
+          <Metric text='all' value={all} />
+          <Metric text='average' value={average} />
+          <Metric text='positive' value={positive + ' %'} />
+        </tbody>
+      </table> 
+    </div>
   );
 }
 
