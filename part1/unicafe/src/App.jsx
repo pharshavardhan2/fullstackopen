@@ -5,12 +5,19 @@ const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 const Metric = ({ text, value }) => <p>{text} {value}</p>
 
 const DisplayFeedback = ({ good, neutral, bad }) => {
+  const all = good + neutral + bad;
+  const average = (good  - bad) / all;
+  const positive = good / all * 100;
+  
   return (
     <>
       <h1>statistics</h1>
       <Metric text='good' value={good} />
       <Metric text='neutral' value={neutral} />
       <Metric text='bad' value={bad} />
+      <Metric text='all' value={all} />
+      <Metric text='average' value={average} />
+      <Metric text='positive' value={positive + ' %'} />
     </> 
   );
 }
