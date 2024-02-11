@@ -4,11 +4,11 @@ const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
 const Metric = ({ text, value }) => <p>{text} {value}</p>
 
-const DisplayFeedback = ({ good, neutral, bad }) => {
+const Statistics = ({ good, neutral, bad }) => {
   const all = good + neutral + bad;
   const average = (good  - bad) / all;
   const positive = good / all * 100;
-  
+
   return (
     <>
       <h1>statistics</h1>
@@ -35,9 +35,9 @@ function App() {
       <Button onClick={handleClick(setGood, good + 1)} text='good' />
       <Button onClick={handleClick(setNeutral, neutral + 1)} text='neutral' />
       <Button onClick={handleClick(setBad, bad + 1)} text='bad' />
-      <DisplayFeedback good={good} neutral={neutral} bad={bad} />
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   )
 }
 
-export default App
+export default App;
