@@ -1,40 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-
-const CountryDetails = ({ country }) => {
-  return (
-    <div>
-      <h1>{country.name.common}</h1>
-      <p>capital {country.capital.join(" ")}</p>
-      <p>area {country.area}</p>
-      <h2>languages:</h2>
-      <ul>
-        {Object.values(country.languages).map(language => <li key={language}>{language}</li>)}
-      </ul>
-      <p style={{fontSize: 150, marginTop: 2}}>{country.flag}</p>
-    </div>
-  )
-}
-
-const Display = ({ countries, query, countrySelected, setCountrySelected }) => {
-  if (countrySelected === null) {
-    const countriesMatched = countries.filter(country => country.name.common.toLowerCase().includes(query.toLowerCase()))
-    
-    if (countriesMatched.length > 10) return <p>Too many countries, specify another filter</p>
-    if (countriesMatched.length <= 10 && countriesMatched.length > 1) {
-      return (
-        <div>
-          {countriesMatched.map(country => <p key={country.cca2}>{country.name.common}<button onClick={() => setCountrySelected(country)}>show</button></p>)}
-        </div>
-      )
-    }
-    if (countriesMatched.length === 1) return <CountryDetails country={countriesMatched[0]} />
-  } else {
-    return <CountryDetails country={countrySelected} />
-  }
-
-  
-}
+import Display from './Components/Display'
 
 const App = () => {
   const [ countries, setCountries ] = useState([])
