@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import ContactForm from './components/ContactForm'
 import Contacts from './components/Contacts'
+import contactService from './services/contacts'
 
 const App = () => {
   const [ contacts, setContacts ] = useState([])
   const [ queryName, setQueryName ] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:3001/contacts')
-      .then(response => setContacts(response.data))
+    contactService.getAll()
+      .then(initialContacts => setContacts(initialContacts))
   }, [])
   
   const handleChangeQuery = (event) => {
