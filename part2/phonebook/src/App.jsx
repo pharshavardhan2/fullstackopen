@@ -28,7 +28,7 @@ const App = () => {
       <h2>Add New Contact</h2>
       <ContactForm contacts={contacts} setContacts={setContacts} />
       <h2>Numbers</h2>
-      <Contacts contacts={contacts} queryName={queryName} />
+      <Contacts contacts={contacts} setContacts={setContacts} queryName={queryName} />
     </div>
   )
 }
