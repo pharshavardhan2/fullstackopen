@@ -8,7 +8,7 @@ const App = () => {
   const [ queryName, setQueryName ] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:3001/persons')
+    axios.get('http://localhost:3001/contacts')
       .then(response => setContacts(response.data))
   }, [])
   

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 const ContactForm = ({ contacts, setContacts }) => {
   const [ newName, setNewName ] = useState('')
@@ -15,9 +16,12 @@ const ContactForm = ({ contacts, setContacts }) => {
         name: newName,
         number: newNumber,
       }
-      setContacts(contacts.concat(contact))
-      setNewName('')
-      setNewNumber('')
+      axios.post('http://localhost:3001/contacts', contact)
+        .then(response => {
+          setContacts(contacts.concat(response.data))
+          setNewName('')
+          setNewNumber('')
+        })
     } else {
       alert(`${newName} is already added to phonebook`)
     }
