@@ -11,7 +11,8 @@ const ContactForm = ({ contacts, setContacts }) => {
 
   const handleSubmitContact = (event) => {
     event.preventDefault()
-    if (contacts.findIndex(contact => contact.name === newName) === -1) {
+    const existingContact = contacts.find(contact => contact.name === newName)
+    if (existingContact === undefined) {
       const contact = {
         name: newName,
         number: newNumber,
@@ -19,12 +20,17 @@ const ContactForm = ({ contacts, setContacts }) => {
       contactService.create(contact)
         .then(returnedContact => {
           setContacts(contacts.concat(returnedContact))
-          setNewName('')
-          setNewNumber('')
         })
     } else {
-      alert(`${newName} is already added to phonebook`)
+      if (window.confirm(`${existingContact.name} is already added to phonebook, replace the old number with a new one?`)) {
+        contactService.update(existingContact.id, { ...existingContact, number: newNumber })
+          .then(returnedContact => {
+            setContacts(contacts.map(contact => contact.id !== existingContact.id ? contact : returnedContact))
+          })
+      }
     }
+    setNewName('')
+    setNewNumber('')
   }
 
   return (
