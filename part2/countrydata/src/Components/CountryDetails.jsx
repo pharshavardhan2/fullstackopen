@@ -10,8 +10,8 @@ const CountryDetails = ({ country }) => {
       <ul>
         {Object.values(country.languages).map(language => <li key={language}>{language}</li>)}
       </ul>
-      <p style={{fontSize: 150, margin: 2}}>{country.flag}</p>
-      <Weather lat={country.latlng[0]} lon={country.latlng[1]} city={country.capital} />
+      <img src={country.flags.png} width={150} alt={country.flags.alt}/>
+      <Weather lat={country.capitalInfo.latlng[0]} lon={country.capitalInfo.latlng[1]} city={country.capital[0]} />
     </div>
   )
 }

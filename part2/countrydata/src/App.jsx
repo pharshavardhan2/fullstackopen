@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Display from './Components/Display'
+import CountryList from './Components/CountryList'
 
 const App = () => {
   const [ countries, setCountries ] = useState([])
@@ -9,9 +9,7 @@ const App = () => {
 
   useEffect(() => {
     axios.get('https://studies.cs.helsinki.fi/restcountries/api/all')
-      .then(response => {
-        setCountries(response.data)
-      })
+      .then(response => setCountries(response.data))
   }, [])
 
   const handleChangeQuery = (event) => {
@@ -19,12 +17,14 @@ const App = () => {
     setCountrySelected(null)
   }
 
+  const matchedCountries = countries.filter(country => country.name.common.toLowerCase().includes(query.toLowerCase()))
+
   return (
     <div>
       <label>
         find countries <input value={query} onChange={handleChangeQuery}/>
       </label>
-      <Display countries={countries} query={query} countrySelected={countrySelected} setCountrySelected={setCountrySelected} />
+      <CountryList countries={matchedCountries} countrySelected={countrySelected} setCountrySelected={setCountrySelected} />
     </div>
   )
 }
