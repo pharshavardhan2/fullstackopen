@@ -1,8 +1,8 @@
-import config from './utils/config'
+import config from './utils/config.js'
 import express from 'express'
-import notesRouter from './controllers/notes'
-import logger from './utils/logger'
-import middleware from './utils/middleware'
+import notesRouter from './controllers/notes.js'
+import logger from './utils/logger.js'
+import middleware from './utils/middleware.js'
 import mongoose from 'mongoose'
 
 mongoose.set('strictQuery', false)

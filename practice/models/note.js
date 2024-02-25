@@ -19,4 +19,4 @@ noteSchema.set('toJSON', {
 
 const Note = model('Note', noteSchema)
 
-export default { Note }
+export default Note

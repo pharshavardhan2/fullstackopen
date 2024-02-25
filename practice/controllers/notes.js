@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import { Note } from '../models/note'
+import Note from '../models/note.js'
 
-notesRouter = Router()
+const notesRouter = Router()
 
 notesRouter.get('/', (req, res) => {
   Note.find({}).then(notes => res.json(notes))
